@@ -21,3 +21,17 @@
     border-top-right-radius: 15px;
     border-top-left-radius: 15px;
 }
+
+.breadcrumb{
+    padding: 0;
+    background-color: transparent;
+}
+
+.breadcrumb-item.active{
+    font-weight: bold;
+    color:black;
+}
+
+.img-fluid{
+    border-radius: 15px;
+}
