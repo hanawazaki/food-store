@@ -21,7 +21,7 @@
       <!-- end breadcrumb -->
       <div class="row mt-3">
         <div class="col-md-6">
-          <img :src="imgUrl()" :alt="product" class="img-fluid shadow" />
+          <img :src="'/images/'+product.gambar" alt="product" class="img-fluid shadow" />
         </div>
         <div class="col-md-6">
           <h2>{{product.nama}}</h2>
@@ -30,16 +30,22 @@
             Harga :
             <strong>Rp. {{product.harga}}</strong>
           </h4>
-          <form class="mt-4">
+          <form class="mt-4" v-on:submit.prevent>
             <div class="form-group">
               <label for="jumlah">Jumlah</label>
-              <input type="number" class="form-control" />
+              <input type="number" class="form-control" v-model="pesan.itempesan" />
             </div>
             <div class="form-group">
-                <label for="keterangan">Keterangan</label>
-                <textarea placeholder="keterangan spt : pedas dll" class="form-control"></textarea>
+              <label for="keterangan">Keterangan</label>
+              <textarea
+                v-model="pesan.keterangan"
+                placeholder="keterangan spt : pedas dll"
+                class="form-control"
+              ></textarea>
             </div>
-            <button type="submit" class="btn btn-success"><b-icon-cart></b-icon-cart> Pesan</button>
+            <button type="submit" class="btn btn-success" @click="pemesanan">
+              <b-icon-cart></b-icon-cart>Pesan
+            </button>
           </form>
         </div>
       </div>
@@ -54,8 +60,8 @@ export default {
   name: "FoodDetail",
   data() {
     return {
-      product: [],
-      gambar: "",
+      product: {},
+      pesan: {},
     };
   },
   components: {
@@ -65,9 +71,14 @@ export default {
     setProduct(data) {
       this.product = data;
     },
-    imgUrl() {
-      this.gambar = this.product.gambar;
-      return require("../assets/images/" + this.gambar);
+    pemesanan() {
+      this.pesan.products = this.product
+      axios
+      .post('http://localhost:3000/keranjangs', this.pesan)
+      .then(()=>{
+          console.log('berhasil')
+      })
+      .catch((error)=>console.log(error))
     },
   },
   mounted() {

@@ -1,6 +1,6 @@
 <template>
   <div class="card shadow card-product">
-    <img class="card-img-top" :src="getImgUrl(product)" v-bind:alt="product" />
+    <img class="card-img-top" :src="'/images/'+product.gambar" v-bind:alt="product" />
     <div class="card-body">
       <h5 class="card-title">{{ product.nama }}</h5>
       <p
@@ -14,16 +14,5 @@
 export default {
   name: "CardProduct",
   props: ["product"],
-  data() {
-    return {
-      gambar: "",
-    };
-  },
-  methods: {
-    getImgUrl(product) {
-      this.gambar = product.gambar;
-      return require("../assets/images/" + this.gambar);
-    },
-  },
 };
 </script>
