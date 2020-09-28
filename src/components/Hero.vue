@@ -16,7 +16,7 @@
           </div>
         </div>
         <div class="col">
-          <img src="../assets/images/hero.png" alt width="100%" />
+          <img src="/images/hero.png" alt width="100%" />
         </div>
       </div>
     </div>
@@ -25,7 +25,7 @@
     <div class="d-sm-block d-md-none">
       <div class="row mt-4">
           <div class="col-md-6 mb-3">
-          <img src="../assets/images/hero.png" alt width="100%" />
+          <img src="/images/hero.png" alt width="100%" />
         </div>
         <div class="col-md-6">
           <div class="d-flex h-100">
