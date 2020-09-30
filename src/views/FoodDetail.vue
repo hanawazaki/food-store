@@ -3,7 +3,7 @@
     <navbar />
     <div class="container">
       <!-- start breadcrumb -->
-      <div class="row mt-5">
+      <div class="row mt-4">
         <div class="col">
           <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
@@ -72,13 +72,28 @@ export default {
       this.product = data;
     },
     pemesanan() {
-      this.pesan.products = this.product
-      axios
-      .post('http://localhost:3000/keranjangs', this.pesan)
-      .then(()=>{
-          console.log('berhasil')
-      })
-      .catch((error)=>console.log(error))
+      if (this.pesan.itempesan) {
+        this.pesan.products = this.product;
+        axios
+          .post("http://localhost:3000/keranjangs", this.pesan)
+          .then(() => {
+            this.$router.push({ path: "/keranjang" });
+            this.$toast.success("Sukses Masuk Keranjang", {
+              type: "success",
+              position: "top-right",
+              duration: 3000,
+              dismissible: true,
+            });
+          })
+          .catch((error) => console.log(error));
+      } else {
+        this.$toast.error("Jumlah Pesan Harus diisi", {
+          type: "error",
+          position: "top-right",
+          duration: 3000,
+          dismissible: true,
+        });
+      }
     },
   },
   mounted() {
