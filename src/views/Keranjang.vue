@@ -112,7 +112,7 @@ export default {
     },
     hapusItemKeranjang(id) {
       axios
-        .delete("http://localhost:3000/keranjangs/" + id)
+        .delete("https://kulineran-server.herokuapp.com/keranjangs/" + id)
         .then(() => {
           this.$toast.success("Sukses Hapus Item", {
             type: "error",
@@ -122,7 +122,7 @@ export default {
           });
 
           axios
-            .get("http://localhost:3000/keranjangs")
+            .get("https://kulineran-server.herokuapp.com/keranjangs")
             .then((res) => this.setKeranjang(res.data))
             .catch((err) => console.log(err));
         })
@@ -132,12 +132,12 @@ export default {
       if (this.pesan.nama && this.pesan.nomeja) {
         this.pesan.kerangjangs = this.keranjang;
         axios
-        .post("http://localhost:3000/pesanans", this.pesan)
+        .post("https://kulineran-server.herokuapp.com/pesanans", this.pesan)
         .then(() => {
             // reset keranjang
             this.keranjang.map(function(item){
                 return axios
-                .delete("http://localhost:3000/keranjangs/" + item.id)
+                .delete("https://kulineran-server.herokuapp.com/keranjangs/" + item.id)
                 .catch((err) => console.log(err));
             });
           this.$router.push({ path: "/pesanan-sukses" });
@@ -160,7 +160,7 @@ export default {
   },
   mounted() {
     axios
-      .get("http://localhost:3000/keranjangs")
+      .get("https://kulineran-server.herokuapp.com/keranjangs")
       .then((res) => this.setKeranjang(res.data))
       .catch((err) => console.log(err));
   },

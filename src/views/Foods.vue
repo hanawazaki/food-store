@@ -60,14 +60,14 @@ export default {
     },
     searchFood() {
       axios
-        .get("http://localhost:3000/products?q=" + this.search)
+        .get("https://kulineran-server.herokuapp.com/products?q=" + this.search)
         .then((response) => this.setProduct(response.data))
         .catch((error) => console.log(error));
     },
   },
   mounted() {
     axios
-      .get("http://localhost:3000/products")
+      .get("https://kulineran-server.herokuapp.com/products")
       .then((response) => this.setProduct(response.data))
       .catch((error) => console.log(error));
   },
